@@ -2,6 +2,7 @@
 <table id="list">
   <thead>
     <tr>
+      <th></th>
       <th>Airline</th>
       <th>Flight Number</th>
       <th>Departure Date</th>
@@ -14,12 +15,15 @@
       return a.departs - b.departs
       }).forEach(function(flight) { %>
       <tr class=<%= new Date() > flight.departs ? 'passed' : '' %>>
-        <button action="/flights/<%= flight._id %>?_method=DELETE"></button>
+        <td>
+          <form class="delete-flight" action="/flights/<%= flight._id %>?_method=DELETE" method="post">
+            <button type="submit">X</button>
+          </form>
+        </td>
         <td><%= flight.airline %></td>
         <td><%= flight.flightNo %></td>
         <td><%= flight.departs %></td>
         <td><%= flight.airport %></td>
-        <% console.log(flight._id) %>
         <td><a href="/flights/<%= flight._id %>">DETAILS</a></td>
       </tr>
       <% }); %>
