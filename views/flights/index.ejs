@@ -5,15 +5,21 @@
       <th>Airline</th>
       <th>Flight Number</th>
       <th>Departure Date</th>
+      <th>Airport</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <% flights.forEach(function(flight) { %>
-      <tr>
+    <% flights.sort(function(a, b) {
+      return a.departs - b.departs
+      }).forEach(function(flight) { %>
+      <tr class=<%= new Date() > flight.departs ? 'passed' : '' %>>
+        <button action="/flights/<%= flight._id %>?_method=DELETE"></button>
         <td><%= flight.airline %></td>
         <td><%= flight.flightNo %></td>
         <td><%= flight.departs %></td>
+        <td><%= flight.airport %></td>
+        <% console.log(flight._id) %>
         <td><a href="/flights/<%= flight._id %>">DETAILS</a></td>
       </tr>
       <% }); %>

@@ -10,7 +10,15 @@
   <label>Flight Number:</label>
   <input type="text" name="flightNo">
   <label>Departure Date</label>
-  <input type="date" name="departs">
+  <input type="datetime-local" name="departs" value=<%= destDate %>>
+  <label>Airport</label>
+  <select name="airport">
+    <option value="AUS">Austin</option>
+    <option value="DAL">Dallas</option>
+    <option value="LAX">Los Angeles</option>
+    <option value="SAN">San Diego</option>
+    <option value="SEA">Seattle</option>
+  </select>
   <input type="submit" value="Add Flight">
 </form>
 
