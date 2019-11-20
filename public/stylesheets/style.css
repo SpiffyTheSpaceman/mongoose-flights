@@ -1,17 +1,61 @@
 body {
   padding: 50px;
+  padding-top: 0;
+  margin-top: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+main {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+nav {
+position: sticky;
+top: 0;
+margin: 0;
+height: 60px;
+background-color: silver;
+display: flex;
+justify-content: flex-end;
+align-content: center;
+align-items: center;
+}
+
+nav > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #00B7FF;
+  width: 100px;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+a.active {
+  color: red;
+  border-top: 5px solid yellow;
+}
+nav > a:hover {
+  transform: scale(1.1);
+  background: linear-gradient(to bottom, white, silver 100%);
+}
+
+th, td {
+  text-align: center;
 }
 
 .passed {
   color: red;
 }
 
-.delete-flight, .delete-flight > button {
+.delete, .delete > button {
   color: black;
   background-color: red;
+  outline: none;
+  border: none;
+  text-align: center;
 }
+

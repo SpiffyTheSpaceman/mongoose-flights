@@ -16,7 +16,7 @@
       }).forEach(function(flight) { %>
       <tr class=<%= new Date() > flight.departs ? 'passed' : '' %>>
         <td>
-          <form class="delete-flight" action="/flights/<%= flight._id %>?_method=DELETE" method="post">
+          <form class="delete" action="/flights/<%= flight._id %>?_method=DELETE" method="post">
             <button type="submit">X</button>
           </form>
         </td>

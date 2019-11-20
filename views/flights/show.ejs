@@ -23,21 +23,29 @@
         <option value="SEA">Seattle</option>
       </select>
       <label>Arrival Date</label>
-      <input type="datetime" name="arrival">
-    <input type="submit" value="Add Review">
+      <input type="datetime-local" name="arrival">
+    <input type="submit" value="Add Flight">
   </form>
   
   <% if (flight.destinations.length) { %>
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>Date</th>
           <th>Destination</th>
         </tr>
       </thead>
       <tbody>
-        <% flight.destinations.forEach(function(destination) { %>
-          <tr>
+          <% flight.destinations.sort(function(a, b) {
+            return a.arrival - b.arrival;
+          }).forEach(function(destination) { %>
+          <tr class=<%= new Date() > destination.arrival ? 'passed' : '' %>>
+            <td>
+              <form class="delete" action="/flights/<%= flight._id %>/destinations/<%= destination.index %>?_method=DELETE" method="post">
+                <button type="submit">X</button>
+              </form>
+            </td>
             <td><%= destination.arrival %></td>
             <td><%= destination.airport %></td>
           </tr>
@@ -47,6 +55,23 @@
   <% } else { %>
     <h5>No Arrivals Specified Yet</h5>
   <% } %>
+
+  <section>
+    <h1>Tickets for this Flight</h1>
+    <a href="/flights/<%= flight._id %>/tickets/new">Add New Ticket</a>
+    <div class="ticket-grid">
+      <h3></h3>
+      <h3>Seat</h3>
+      <h3>Price</h3>
+      <% tickets.forEach( (ticket) => { %>
+        <form class="delete" action="/tickets/<%= ticket._id %>?_method=DELETE" method="post">
+          <button type="submit">X</button>
+        </form>
+        <p><%= ticket.seat %></p>
+        <p><%= ticket.price %></p>
+      <% }); %>
+    </div>
+  </section>
 
 
 <%- include('../partials/footer') %>

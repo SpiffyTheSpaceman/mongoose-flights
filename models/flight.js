@@ -8,7 +8,8 @@ var destinationSchema = new Schema({
   },
   arrival: {
       type: Date
-  }
+  },
+  index: Number,
 });
 
 var flightSchema = new Schema({
